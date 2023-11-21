@@ -125,3 +125,56 @@ TEST(MergeSortTest, SortsTwoElementArrayAscending) {
 
     ASSERT_EQ(input, expected_output);
 }
+//12.Test sprawdza, czy algorytm poprawnie sortuje du¿¹ tablicê zawieraj¹c¹ ponad 100 elementów
+TEST(MergeSortTest, SortsLargeArray) {
+    
+    const int arraySize = 105;
+    std::vector<int> input = {
+        45, 12, 78, 34, 90, 23, 56, 89, 67, 43, 21,
+        76, 32, 88, 54, 98, 10, 65, 31, 77, 44, 19,
+        87, 55, 29, 99, 11, 66, 42, 18, 75, 33, 80,
+        22, 68, 46, 24, 79, 35, 91, 57, 30, 13, 81,
+        58, 36, 92, 14, 69, 47, 25, 82, 66, 15, 70,
+        48, 26, 83, 37, 93, 16, 71, 49, 27, 84, 38,
+        94, 17, 72, 50, 28, 85, 39, 95, 20, 73, 51,
+        40, 96, 74, 52, 41, 97, 53, 60, 102, 100, 101,
+        104, 103, 106, 110, 109, 108, 107, 112, 115, 113, 114,
+        118, 116, 120, 119, 117, 123, 122, 121, 126, 124, 128,
+        127, 130, 125, 129, 132, 131, 135, 133, 136, 138, 137
+    };
+
+    // posortowana rosn¹co tablica
+    std::vector<int> expected_output = input;
+    std::sort(expected_output.begin(), expected_output.end());
+
+    MergeSort sorter;
+    sorter.sortuj(input, 0, input.size() - 1);
+
+    ASSERT_EQ(input, expected_output);
+}
+//13.Test sprawdza, czy algorytm poprawnie sortuje du¿¹ tablicê zawieraj¹c¹ ponad 100 elementów z liczbami ujemnymi, dodatnimi oraz duplikatami
+TEST(MergeSortTest, SortsLargeMixedArrayWithDuplicates) {
+    
+    const int arraySize = 105;
+    std::vector<int> input = {
+        45, -12, 78, -34, 90, 23, -56, 89, -67, 43, -21,
+        76, -32, 88, -54, 98, 10, -65, 31, -77, 44, -19,
+        -87, 55, -29, 99, 11, -66, 42, -18, 75, -33, 80,
+        22, -68, 46, -24, 79, -35, 91, -57, 30, -13, 81,
+        58, -36, 92, -14, 69, -47, 25, -82, 66, -15, 70,
+        -48, 26, -83, 37, -93, 16, -71, 49, -27, 84, 38,
+        -94, 17, -72, 50, -28, 85, 39, -95, 20, -73, 51,
+        40, -96, 74, -52, 41, -97, 53, -60, 102, 100, 101,
+        104, 103, 106, 110, 109, 108, 107, 112, 115, 113, 114,
+        118, 116, 120, 119, 117, 123, 122, 121, 126, 124, 128,
+        127, 130, 125, 129, 132, 131, 135, 133, 136, 138, 137
+    };
+
+    std::vector<int> expected_output = input;
+    std::sort(expected_output.begin(), expected_output.end());
+
+    MergeSort sorter;
+    sorter.sortuj(input, 0, input.size() - 1);
+
+    ASSERT_EQ(input, expected_output);
+}
